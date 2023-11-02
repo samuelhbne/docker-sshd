@@ -10,6 +10,9 @@ RUN apk update && \
     cp -a /etc/ssh /etc/ssh.cache && \
     rm -rf /var/cache/apk/*
 
+RUN echo "TCPKeepAlive yes">>/etc/ssh/sshd_config
+RUN echo "ClientAliveInterval 120">>/etc/ssh/sshd_config
+
 EXPOSE 22
 
 COPY entry.sh /entry.sh
